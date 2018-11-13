@@ -1,0 +1,100 @@
+-- 30 degrees North database 
+
+
+DROP DATABASE IF EXISTS timetracker;
+
+CREATE database IF NOT EXISTS timetracker;
+
+USE timetracker;
+
+
+-- users tables 
+
+DROP TABLE IF EXISTS`account`, `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `User_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `username` varchar(225) NOT NULL,
+  `email` varchar(225) NOT NULL,
+  `password` varchar(225) NOT NULL,
+  `active` tinyint(2) NOT NULL,
+  PRIMARY KEY (`User_ID`)
+); 
+
+
+
+
+-- customer data 
+CREATE TABLE IF NOT EXISTS `customers` (
+    `customer_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `first_name` varchar(225) DEFAULT NULL,
+    `last_name` varchar(225) DEFAULT NULL,
+	`phone` varchar(225) DEFAULT NULL,
+    `ADDRESS` varchar(225)DEFAULT NULL,
+     PRIMARY KEY (`customer_ID`)
+     );
+     
+-- customer booking data
+ CREATE TABLE IF NOT EXISTS `books`(
+ `books_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `custimer_ID` int(10) NOT NULL,
+ `driver_ID` int(10) NOT NULL,
+ PRIMARY KEY(`books_ID`)
+ );
+ 
+ 
+ -- driver data 
+ CREATE TABLE IF NOT EXISTS `driver`(
+ `driver_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `first_name` varchar(225) DEFAULT NULL,
+ `last_name` varchar(225) DEFAULT NULL,
+ `phone` varchar(225) DEFAULT NULL,
+ `address` varchar(255) NOT NULL,
+ `email` varchar(255) NOT NULL,
+ `licens_num`varchar(225) DEFAULT NULL,
+ PRIMARY KEY(`driver_ID`)
+ );
+ 
+ -- drives data
+ CREATE TABLE IF NOT EXISTS `drives`(
+ `drives_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+ `driver_ID` int(10) NOT NULL,
+ `vehicle_ID` int(10) NOT NULL,
+ PRIMARY KEY(`drives_ID`)
+ );
+ 
+ 
+ -- vehicle data
+CREATE TABLE IF NOT EXISTS `vehicle` (
+`vehicle_ID` int(10)  unsigned NOT NULL AUTO_INCREMENT,
+`model` varchar(225) NOT NULL,
+`capacity`int (10) NOT NULL,
+`regNO` varchar(255),
+`present location` varchar(225) NOT NULL,
+PRIMARY KEY(`vehicle_ID`)
+);
+
+-- takes data
+
+DROP TABLE IF EXISTS `takes`;
+CREATE TABLE IF NOT EXISTS `takes` (
+  `takes_ID` int(10) NOT NULL AUTO_INCREMENT,
+  `customer_ID` int(10) NOT NULL,
+  `journey_ID` int(10) NOT NULL,
+  `starttime` datetime(6) NOT NULL,
+  `stoptime` datetime(6) NOT NULL,
+  `destination` varchar(125) NOT NULL,
+  PRIMARY KEY (`takes_ID`)
+);
+
+-- journey data
+CREATE TABLE IF NOT EXISTS `journey`(
+`journey_ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`start_point` varchar(225)  NOT NULL,
+`destination` varchar(225)  NOT NULL,
+PRIMARY KEY (`journey_ID`)
+);
+
+
+ 
+  
+  
